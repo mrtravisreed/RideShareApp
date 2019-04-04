@@ -1,22 +1,35 @@
-package edu.neu.ccs.cs5004.assignment8.problem2;
-
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
-
 /**
- * Class Ride Share System
+ * RideSharingSystem provides registration for a given prospective driver.
+ *
  */
 public class RideSharingSystem {
   private ArrayList<ProspectiveDriver> existingDrivers;
   private static final int DRIVER_MINIMUM_AGE = 21;
 
+  /**
+   * Constructs a new empty RideSharingSystem.
+   */
+  public RideSharingSystem() {
+    this.existingDrivers = new ArrayList<>();
+  }
 
   /**
-   * method that lets you know if you are accepted as a new driver
-   *
-   * @param newDriver checks whether or not driver is acceptable
-   * @throws NotSuitableAsNewDriverException
+   * Constructs a new RideSharingSystem with given pool of existing drivers.
+   * @param existingDrivers pool of existing drivers
+   */
+  public RideSharingSystem(
+      ArrayList<ProspectiveDriver> existingDrivers) {
+    this.existingDrivers = existingDrivers;
+  }
+
+  /**
+   * Registers a prospective driver.
+   * @param newDriver a Driver object
+   * @throws NotSuitableAsNewDriverException thrown when prospective driver is
+   *     not accepted as new driver
    */
   public void register(ProspectiveDriver newDriver) throws NotSuitableAsNewDriverException {
     if (isSuitable(newDriver) && !existingDrivers.contains(newDriver)) {
@@ -29,10 +42,10 @@ public class RideSharingSystem {
   }
 
   /**
-   * checks to make sure all requirements are met to accept or reject new driver.
+   * Main helper function to decide if a prospective driver is accepted as a new driver.
    *
-   * @param newDriver
-   * @return suitable driver or not
+   * @param newDriver ProspectiveDrive object
+   * @return true if new driver is accepted, false otherwise.
    */
   private boolean isSuitable(ProspectiveDriver newDriver) {
     int minimumVehicleYear = 20;
@@ -43,7 +56,7 @@ public class RideSharingSystem {
     if (!isGoodDriverLicense(newDriver)) {
       return false;
     }
-    if ((newDriver.vehicleInformation.getYear() - LocalDate.now().getYear()) > minimumVehicleYear) {
+    if ((LocalDate.now().getYear() - newDriver.vehicleInformation.getYear()) > minimumVehicleYear) {
       return false;
     }
     if (!isGoodVehicleInsurance(newDriver)) {
@@ -59,10 +72,11 @@ public class RideSharingSystem {
   }
 
   /**
-   * method that checks whether or not licence is acceptable
+   * Helper function (1/5) for isSuitable (main helper). Checks if a given driver's information
+   * matches with the information on their driver's license.
    *
-   * @param newDriver
-   * @return good driver licence or not
+   * @param newDriver ProspectiveDriver object
+   * @return true if a prospective driver has good driver license, false otherwise
    */
   private boolean isGoodDriverLicense(ProspectiveDriver newDriver) {
     if (!newDriver.driverName.equals(newDriver.driverLicense.getDriverName())) {
@@ -84,14 +98,16 @@ public class RideSharingSystem {
   }
 
   /**
-   * method that checks and returns whether or not insurance is good
+   * Helper function (2/5) for isSuitable (main helper). Check's if a given driver's insurance
+   * information is valid.
    *
-   * @param newDriver
-   * @return good insurance or not good insurance
+   * @param newDriver ProspectiveDriver object
+   * @return true if a prospective driver has good vehicle insurance, false otherwise
    */
   private boolean isGoodVehicleInsurance(ProspectiveDriver newDriver) {
     if (!newDriver.vehicleInsuranceInformation.getOwner().equals(newDriver.driverName)
-        && !newDriver.vehicleInsuranceInformation.getOtherDrivers().contains(newDriver)) {
+        && !newDriver.vehicleInsuranceInformation
+        .getOtherDrivers().contains(newDriver.getDriverName())) {
       return false;
     }
     if (newDriver.vehicleInsuranceInformation.getExpires().compareTo(LocalDate.now()) < 0) {
@@ -99,22 +115,27 @@ public class RideSharingSystem {
     }
     return true;
   }
-
+  /**
+   * Helper function (3/5) for isSuitable (main helper). Checks if a given driver's driver history
+   * is disqualifying.
+   *
+   * @param newDriver ProspectiveDriver object
+   * @return true if a prospective driver has good driving history, false otherwise
+   */
   private boolean isGoodDriverHistory(ProspectiveDriver newDriver) {
-    if (!newDriver.driverHistory.isEmpty()) {
+    if (!newDriver.getDriverHistory().isEmpty()) {
       return isMinorViolation(newDriver.driverHistory);
     }
     return true;
   }
-
   /**
-   * method that checks for disqualifying violations and returns whether or not the
-   * driver history qualifies
+   * Helper function (4/5) for isSuitable (main helper). Checks if a given driver history is free
+   * of any disqualifying violations.
    *
-   * @param driverHistory
-   * @return true if the driver doesnt have any major violations
+   * @param driverHistory ArrayList of a driver's history
+   * @return true if a prospective driver has no or only minor violation, false otherwise
    */
-  private boolean isMinorViolation (ArrayList<AbstractViolation> driverHistory) {
+  private boolean isMinorViolation(ArrayList<AbstractViolation> driverHistory) {
     for (AbstractViolation violation : driverHistory) {
       if (violation instanceof MovingViolation) {
         MovingViolationType type = ((MovingViolation) violation).getType();
@@ -136,22 +157,22 @@ public class RideSharingSystem {
   }
 
   /**
-   * this method checks to see if the vehicle has ever been in a crash or not and disqualifies
-   * the vehicle if it has.
+   * Helper function (5/5) for isSuitable (main helper). Checks if a given vehicle history is free
+   * of any recent disqualifying violations.
    *
-   * @param vehicleHistory
-   * @return acceptable or not vehicle
+   * @param vehicleHistory ArrayList of a vehicle's history
+   * @return true if a prospective driver has good vehicle history, false otherwise
    */
   private boolean isGoodVehicleHistory(ArrayList<AbstractViolation> vehicleHistory) {
+    if (vehicleHistory.isEmpty()) {
+      return true;
+    }
     for (AbstractViolation violation : vehicleHistory) {
-      if (violation instanceof Crash || violation instanceof MovingViolation) {
-        if (Period.between(violation.getViolationDate(), LocalDate.now()).getMonths() < 6) {
-          return false;
-        }
+      if (violation instanceof Crash || violation instanceof MovingViolation
+          && Period.between(violation.getViolationDate(), LocalDate.now()).getMonths() < 6) {
+        return false;
       }
     }
     return true;
   }
-
 }
-

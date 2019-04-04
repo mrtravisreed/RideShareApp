@@ -1,8 +1,9 @@
-package edu.neu.ccs.cs5004.assignment8.problem2;
-
-import edu.neu.ccs.cs5004.assignment8.problem1.Name;
 import java.time.LocalDate;
 
+/**
+ * AbstractViolation keeps track of a traffic violation, including the date of the violation.
+ *
+ */
 public abstract class AbstractViolation {
 
   /**

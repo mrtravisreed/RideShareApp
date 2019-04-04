@@ -1,8 +1,9 @@
-package edu.neu.ccs.cs5004.assignment8.problem2;
-
-import edu.neu.ccs.cs5004.assignment8.problem1.Name;
 import java.time.LocalDate;
 
+/**
+ * Crash keeps track of crash's date, offending driver, and type.
+ *
+ */
 public class Crash extends AbstractViolation {
 
   /**

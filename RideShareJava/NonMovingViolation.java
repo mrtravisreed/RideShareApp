@@ -1,10 +1,8 @@
-package edu.neu.ccs.cs5004.assignment8.problem2;
-
-import edu.neu.ccs.cs5004.assignment8.problem1.Name;
 import java.time.LocalDate;
 
 /**
  * NonMovingViolation keeps track of a non moving violation's date, offending driver, and type.
+ *
  */
 public class NonMovingViolation extends AbstractViolation {
 

@@ -1,8 +1,6 @@
-package edu.neu.ccs.cs5004.assignment8.problem2;
-
 /**
- * AliasNotPresentException is an exception to be thrown if a given alias cannot be found in a
- * media library.
+ * NotSuitableAsNewDriverException is an exception to be thrown if a prospective driver is not
+ * accepted as a new driver.
  *
  */
 public class NotSuitableAsNewDriverException extends Exception {

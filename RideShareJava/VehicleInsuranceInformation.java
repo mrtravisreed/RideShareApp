@@ -1,6 +1,3 @@
-package edu.neu.ccs.cs5004.assignment8.problem2;
-
-import edu.neu.ccs.cs5004.assignment8.problem1.Name;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Objects;
@@ -111,10 +108,10 @@ public class VehicleInsuranceInformation {
    */
   @Override
   public String toString() {
-    return "VehicleInsuranceInformation{" +
-        "owner=" + owner +
-        ", expires=" + expires +
-        '}';
+    return "VehicleInsuranceInformation{"
+            + "owner=" + owner
+            + ", expires=" + expires
+            + '}';
   }
 
   /**
@@ -132,9 +129,9 @@ public class VehicleInsuranceInformation {
       return false;
     }
     VehicleInsuranceInformation that = (VehicleInsuranceInformation) other;
-    return Objects.equals(getOwner(), that.getOwner()) &&
-        Objects.equals(getOtherDrivers(), that.getOtherDrivers()) &&
-        Objects.equals(getExpires(), that.getExpires());
+    return Objects.equals(getOwner(), that.getOwner())
+            && Objects.equals(getOtherDrivers(), that.getOtherDrivers())
+            && Objects.equals(getExpires(), that.getExpires());
   }
 
   /**

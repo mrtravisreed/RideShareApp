@@ -1,12 +1,10 @@
-package edu.neu.ccs.cs5004.assignment8.problem2;
-
-import edu.neu.ccs.cs5004.assignment8.problem1.Name;
 import java.util.ArrayList;
 import java.util.Objects;
 
 /**
  * VehicleInformation keeps track of a vehicle's information, including the make, model, and year
  * of the vehicle, as well as the registered owner.
+ *
  */
 public class VehicleInformation {
 
@@ -100,7 +98,7 @@ public class VehicleInformation {
   }
 
   /**
-   * Sets the vehicle make
+   * Sets the vehicle make.
    *
    * @param make the new make
    */
@@ -166,7 +164,7 @@ public class VehicleInformation {
   /**
    * Determines if this vehicle information object is equal to a given object.
    *
-   * @param other
+   * @param other the object to compare equality
    * @return true if equal, false if not
    */
   @Override
@@ -178,10 +176,10 @@ public class VehicleInformation {
       return false;
     }
     VehicleInformation that = (VehicleInformation) other;
-    return getYear() == that.getYear() &&
-        Objects.equals(getMake(), that.getMake()) &&
-        Objects.equals(getModel(), that.getModel()) &&
-        Objects.equals(getOwner(), that.getOwner());
+    return getYear() == that.getYear()
+            && Objects.equals(getMake(), that.getMake())
+            && Objects.equals(getModel(), that.getModel())
+            && Objects.equals(getOwner(), that.getOwner());
   }
 
   /**

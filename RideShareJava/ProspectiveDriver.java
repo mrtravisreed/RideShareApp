@@ -1,6 +1,3 @@
-package edu.neu.ccs.cs5004.assignment8.problem2;
-
-import edu.neu.ccs.cs5004.assignment8.problem1.Name;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -50,16 +47,69 @@ public class ProspectiveDriver {
    * @param driverBirthDate the driver's birth date
    * @param driverLicense the driver's license information
    * @param vehicleInformation the driver's vehicle information
+   * @param vehicleInsuranceInformation the driver's vehicle insurance information
    * @param driverHistory the driver's history of violations
    */
   public ProspectiveDriver(Name driverName, LocalDate driverBirthDate, DriverLicense driverLicense,
-      VehicleInformation vehicleInformation, VehicleInsuranceInformation vehicleInsuranceInformation,
+      VehicleInformation vehicleInformation,
+      VehicleInsuranceInformation vehicleInsuranceInformation,
       ArrayList<AbstractViolation> driverHistory) {
     this.driverName = driverName;
     this.driverBirthDate = driverBirthDate;
     this.driverLicense = driverLicense;
     this.vehicleInformation = vehicleInformation;
     this.vehicleInsuranceInformation = vehicleInsuranceInformation;
+    this.driverHistory = driverHistory;
+  }
+
+  public Name getDriverName() {
+    return driverName;
+  }
+
+  public void setDriverName(Name driverName) {
+    this.driverName = driverName;
+  }
+
+  public LocalDate getDriverBirthDate() {
+    return driverBirthDate;
+  }
+
+  public void setDriverBirthDate(LocalDate driverBirthDate) {
+    this.driverBirthDate = driverBirthDate;
+  }
+
+  public DriverLicense getDriverLicense() {
+    return driverLicense;
+  }
+
+  public void setDriverLicense(DriverLicense driverLicense) {
+    this.driverLicense = driverLicense;
+  }
+
+  public VehicleInformation getVehicleInformation() {
+    return vehicleInformation;
+  }
+
+  public void setVehicleInformation(
+      VehicleInformation vehicleInformation) {
+    this.vehicleInformation = vehicleInformation;
+  }
+
+  public VehicleInsuranceInformation getVehicleInsuranceInformation() {
+    return vehicleInsuranceInformation;
+  }
+
+  public void setVehicleInsuranceInformation(
+      VehicleInsuranceInformation vehicleInsuranceInformation) {
+    this.vehicleInsuranceInformation = vehicleInsuranceInformation;
+  }
+
+  public ArrayList<AbstractViolation> getDriverHistory() {
+    return driverHistory;
+  }
+
+  public void setDriverHistory(
+      ArrayList<AbstractViolation> driverHistory) {
     this.driverHistory = driverHistory;
   }
 }

@@ -1,5 +1,3 @@
-package edu.neu.ccs.cs5004.assignment8.problem2;
-
 /**
  * NonMovingViolationType enumerates the types of non moving violations.
  *

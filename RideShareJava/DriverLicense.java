@@ -1,6 +1,3 @@
-package edu.neu.ccs.cs5004.assignment8.problem2;
-
-import edu.neu.ccs.cs5004.assignment8.problem1.Name;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -80,7 +77,7 @@ public class DriverLicense {
   }
 
   /**
-   * Returns the license number
+   * Returns the license number.
    *
    * @return the license number
    */
@@ -158,11 +155,11 @@ public class DriverLicense {
    */
   @Override
   public String toString() {
-    return "DriverLicense{" +
-        "Number='" + licenseNumber + '\'' +
-        ", Name=" + driverName +
-        ", expires=" + expires +
-        '}';
+    return "DriverLicense{"
+            + "Number='" + licenseNumber + '\''
+            + ", Name=" + driverName
+            + ", expires=" + expires
+            + '}';
   }
 
   /**
@@ -180,14 +177,14 @@ public class DriverLicense {
       return false;
     }
     DriverLicense that = (DriverLicense) other;
-    return Objects.equals(getLicenseNumber(), that.getLicenseNumber()) &&
-        Objects.equals(getDriverName(), that.getDriverName()) &&
-        Objects.equals(getAddress(), that.getAddress()) &&
-        Objects.equals(getDriverBirthdate(), that.getDriverBirthdate()) &&
-        Objects.equals(getCountry(), that.getCountry()) &&
-        Objects.equals(getState(), that.getState()) &&
-        Objects.equals(getIssued(), that.getIssued()) &&
-        Objects.equals(getExpires(), that.getExpires());
+    return Objects.equals(getLicenseNumber(), that.getLicenseNumber())
+            && Objects.equals(getDriverName(), that.getDriverName())
+            && Objects.equals(getAddress(), that.getAddress())
+            && Objects.equals(getDriverBirthdate(), that.getDriverBirthdate())
+            && Objects.equals(getCountry(), that.getCountry())
+            && Objects.equals(getState(), that.getState())
+            && Objects.equals(getIssued(), that.getIssued())
+            && Objects.equals(getExpires(), that.getExpires());
   }
 
   /**
